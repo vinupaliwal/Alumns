@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import RssFeed from '@mui/icons-material/RssFeed';
 import Chat from '@mui/icons-material/ChatBubbleOutline';
 import Video from '@mui/icons-material/PlayCircle';
@@ -11,8 +11,11 @@ import Course from '@mui/icons-material/School';
 import {Users} from '../../dummyData' 
 import './SideBar.css';
 import CloseFriend from '../closeFriend/CloseFriend';
+import {Link} from "react-router-dom";
+import { AuthContext } from '../../context/AuthContext';
 
 const SideBar = () => {
+  const {user} = useContext(AuthContext);
   return (
 	<div className='sideBar'>
     <div className="sideBarWrapper">
@@ -23,7 +26,7 @@ const SideBar = () => {
         </li>
         <li className="sideBarListItem">
           <Chat className='sideBarIcon'/>
-          <span className="sideBarListItemText">Chats</span>
+          <span className="sideBarListItemText"><Link to={`/messenger`}>Chats</Link></span>
         </li>
         <li className="sideBarListItem">
           <Video className='sideBarIcon'/>
