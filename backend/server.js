@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const Cors = require('cors');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
@@ -27,6 +28,7 @@ mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true},()=>{
 app.use("/images",express.static(path.join(__dirname,"public/images")));
 //middlewares
 app.use(express.json());
+app.use(Cors());
 app.use(helmet());
 app.use(morgan("common"));
 
