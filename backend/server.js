@@ -30,9 +30,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.get("/",(req,res)=>{
-    res.send("hey ya");
-})
+app.get("/", (req, res) => {
+    res.send("Express on Vercel");
+  });
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
        cb(null,"public/images");
