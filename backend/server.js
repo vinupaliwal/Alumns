@@ -15,11 +15,6 @@ const messagesRoutes = require('./routes/messages');
 
 dotenv.config();
 PORT = 8081;
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
 
 mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true},()=>{
     console.log("MongoDb Database is connected");
