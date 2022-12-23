@@ -25,7 +25,7 @@ router.put("/:id",async (req,res)=>{
         return res.status(403).json("You can update your password only");
     }
 })
-
+router.get('/',(req,res)=>(res.status(200).send("Hello Programmers this is users !")));
 //delete user 
 router.delete("/:id", async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
