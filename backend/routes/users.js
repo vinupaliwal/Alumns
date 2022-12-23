@@ -22,10 +22,10 @@ router.put("/:id",async (req,res)=>{
        }
     }
     else{
-        return res.status(403).json("You can update your password only");
+        return res.status(403).json("You can update your password only"); 
     }
 })
-router.get('/',(req,res)=>(res.status(200).send("Hello Programmers this is users !")));
+router.get('/',(req,res)=>(res.status(200).send("Hello Programmers this is users !"))); // this is for testing
 //delete user 
 router.delete("/:id", async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
