@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const multer = require("multer");
 const path = require("path");
+// const MONGOURI = require("./config/keys");
 const usersRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 const postsRoutes = require('./routes/posts');
@@ -17,7 +18,7 @@ dotenv.config();
 PORT = 8081;
 
 mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true},()=>{
-    console.log("MongoDb Database is connected");
+    console.log("MongoDb Database is connected  ");
 })
 
 app.use("/images",express.static(path.join(__dirname,"public/images")));
