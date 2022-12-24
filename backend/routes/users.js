@@ -25,7 +25,6 @@ router.put("/:id",async (req,res)=>{
         return res.status(403).json("You can update your password only"); 
     }
 })
-router.get('/',(req,res)=>(res.status(200).send("Hello Programmers this is users !"))); // this is for testing
 //delete user 
 router.delete("/:id", async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -40,17 +39,27 @@ router.delete("/:id", async (req, res) => {
     }
   });
 //get a user
-// router.get("/",async (req,res)=>{
-//    const username =  req.query.username;
-//    const userId =  req.query.userId;
-//      try{
-//         const user = userId ? await UserSchema.findById(userId) : await UserSchema.findOne({username:username});
-//         const {password,updatedAt,...others} = user._doc;
-//         res.status(200).json(others);
-//      }catch(err){
-//         res.status(500).json(err);
-//      }
-// }) 
+router.get("/",async (req,res)=>{
+   const username =  req.query.username;
+   const userId =  req.query.userId;
+     try{
+        const user = userId ? await UserSchema.findById(userId) : await UserSchema.findOne({username:username});
+        const {password,updatedAt,...others} = user._doc;
+        res.status(200).json(others);
+     }catch(err){
+        res.status(500).json(err);
+     }
+}) 
+
+// get all users 
+router.get("/allUser",async (req,res)=>{
+    try{
+       const user = await UserSchema.find();
+       res.status(200).json(user);
+    }catch(err){
+       res.status(500).json(err);
+    }
+}) 
 
 //get friends
 router.get("/friends/:userId",async(req,res)=>{
@@ -75,7 +84,7 @@ router.get("/friends/:userId",async(req,res)=>{
 
 
 //follow a user
-router.put("/:id/follow", async (req, res) => {
+router.put("/follow/:id", async (req, res) => {
     if (req.body.userId !== req.params.id) {
       try {
         const user = await UserSchema.findById(req.params.id);
@@ -88,7 +97,7 @@ router.put("/:id/follow", async (req, res) => {
           res.status(403).json("you allready follow this user");
         }
       } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json(err); 
       }
     } else {
       res.status(403).json("you cant follow yourself");
@@ -96,7 +105,7 @@ router.put("/:id/follow", async (req, res) => {
   });
 
 //unfollow a user
-router.put("/:id/unfollow", async (req, res) => {
+router.put("/unfollow/:id", async (req, res) => {
     if (req.body.userId !== req.params.id) {
       try {
         const user = await UserSchema.findById(req.params.id);

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './message.css';
 import {format} from 'timeago.js';
+import { AuthContext } from '../../context/AuthContext';
 
 function Message({own,message}) {
+  const {user} = useContext(AuthContext);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  console.log(message);
   console.log(own);
   return (
     <>
@@ -10,7 +14,7 @@ function Message({own,message}) {
       <div className="messageTop">
         <img
           className="messageImg"
-          src="https://images.pexels.com/photos/3686769/pexels-photo-3686769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          src={own?PF+user.profilePicture : PF+"person/noAvtar.png"}
           alt=""
         />
         <p className="messageText">{message.text}</p>

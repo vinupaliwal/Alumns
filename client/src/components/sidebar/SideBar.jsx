@@ -26,7 +26,7 @@ const SideBar = () => {
         </li>
         <li className="sideBarListItem">
           <Chat className='sideBarIcon'/>
-          <span className="sideBarListItemText"><Link to={`/messenger`}>Chats</Link></span>
+          <span className="sideBarListItemText"><Link to={`/messenger`} style={{textDecoration:"none",color:"black"}}>Chats</Link></span>
         </li>
         <li className="sideBarListItem">
           <Video className='sideBarIcon'/>

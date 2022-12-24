@@ -2,6 +2,7 @@ import {React,useContext} from 'react';
 import Search from '@mui/icons-material/Search';
 import Person from '@mui/icons-material/Person';
 import Chat from '@mui/icons-material/ChatBubble';
+import MessageIcon from '@mui/icons-material/Message';
 import Notification from '@mui/icons-material/NotificationsNone';
 import "./Topbar.css";
 import {Link} from "react-router-dom";
@@ -24,7 +25,7 @@ const Topbar = () => {
 		</div>
 		<div className="topBarRight">
 			<div className="topBarLinks">
-				<span className="topBarLink">Home</span>
+				<span className="topBarLink"><Link to={`/`} style={{textDecoration:"none",color:"white"}}>Home</Link></span>
 				<span className="topBarLink">TimeLine</span>
 			</div>
 			<div className="topBarIcons">
@@ -33,7 +34,7 @@ const Topbar = () => {
 				<span className="topBarIconBadge">1</span>
 				</div>
 				<div className="topBarIconItem">
-					<Chat />
+				<Link to={`/messenger`} style={{textDecoration:"none",color:"black"}}><MessageIcon /></Link>
 				<span className="topBarIconBadge">1</span>
 				</div>
 				<div className="topBarIconItem">

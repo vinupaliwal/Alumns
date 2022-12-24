@@ -4,7 +4,7 @@ import Share from '../share/Share';
 import { AuthContext } from '../../context/AuthContext';
 import './Feed.css';
 import axios from 'axios';
-import instance from '../../axios/axios';
+
 
 const Feed = ({username}) => {
    const[posts,setPosts] = useState([]);
@@ -13,8 +13,8 @@ const Feed = ({username}) => {
   useEffect(() => {
 	const fetchPosts= async()=>{
         const res = username
-		?await instance.get("/posts/profile/"+username)
-		:await instance.get("/posts/timeline/"+user._id)
+		?await axios.get("/posts/profile/"+username)
+		:await axios.get("/posts/timeline/"+user._id)
 
 		 console.log(res.data[0]);
 		 setPosts(res.data.sort((p1,p2)=>{

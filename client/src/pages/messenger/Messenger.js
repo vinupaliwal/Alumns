@@ -103,6 +103,7 @@ function Messenger() {
   // console.log(messages);
   return (
     <>
+      <Topbar/>
         <div className='messenger'>
             <div className='chatMenu'>
                 <div className='chatMenuWrapper'>

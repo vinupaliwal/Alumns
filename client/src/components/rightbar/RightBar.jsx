@@ -11,12 +11,12 @@ const RightBar = ({user}) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
+  const [followed, setFollowed] = useState(currentUser.followings?.includes(user?._id));
 
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axios.get("/users/friends/" + user._id);
+        const friendList = await axios.get("/users/friends/" + user?._id);
         setFriends(friendList.data);
       } catch (err) {
         console.log(err);
@@ -28,22 +28,36 @@ const RightBar = ({user}) => {
   const handleClick = async () => {
     try {
       if (followed) {
-        await axios.put(`/users/${user._id}/unfollow`, {
+        await axios.put(`/users/unfollow/${user._id}`, {
           userId: currentUser._id,
         });
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await axios.put(`/users/${user._id}/follow`, {
+        await axios.put(`/users/follow/${user._id}`, {
           userId: currentUser._id,
         });
         dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
     } catch (err) {
+      console.log(err);
     }
   };
 
   const HomeRightBar = ()=>{
+    // const {user} = useContext(AuthContext);
+    const[allUser,setAllUser] = useState([]);
+    useEffect(() => {
+      const getFriends = async () => {
+        try {
+          const res = await axios.get("/users/allUser");
+          setAllUser(res.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getFriends();
+    }, []);
     return(
       <>
       <div className="birthdayContainer">
@@ -51,10 +65,12 @@ const RightBar = ({user}) => {
         <span className="birthdayText"><b>Anushka Dwivedi</b> and <b>Krishna Gopal</b> have a birthday  today</span>
       </div>
       <img src="/assets/ad.png" alt="" className="rightbarAd" />
-      <h4 className="rightbarTitle">Online Friends</h4>
+      <h4 className="rightbarTitle">All Alumni</h4>
       <ul className="rightbarFriendList">
-        {Users.map((u)=>(
-          <Online key={u.id} user={u} />
+        {allUser.map((u)=>(
+          <>
+          <Online user={u} />
+          </>
         ))}
       </ul> 
       </>
@@ -110,7 +126,7 @@ const RightBar = ({user}) => {
   return (
 	<div className='rightbar'>
     <div className="rightbarWrapper">
-    {user ? <ProfileRightBar /> : <HomeRightBar />}
+    {user?<ProfileRightBar/>:<HomeRightBar />}
     </div>
   </div>
   )
