@@ -24,7 +24,7 @@ const Profile = () => {
   <>
       <Topbar  />
       <div className="profile">
-      <SideBar />
+      <SideBar logout={true}/>
 	  	<div className="profileRight">
 			<div className="profileRightTop">
 				<div className="profileCover">

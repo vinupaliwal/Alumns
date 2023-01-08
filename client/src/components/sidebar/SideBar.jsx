@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import RssFeed from '@mui/icons-material/RssFeed';
 import Chat from '@mui/icons-material/ChatBubbleOutline';
 import Video from '@mui/icons-material/PlayCircle';
@@ -8,14 +8,20 @@ import Question from '@mui/icons-material/HelpOutline';
 import Job from '@mui/icons-material/Work';
 import Event from '@mui/icons-material/CalendarToday';
 import Course from '@mui/icons-material/School';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import {Users} from '../../dummyData' 
 import './SideBar.css';
 import CloseFriend from '../closeFriend/CloseFriend';
-import {Link} from "react-router-dom";
+import {Link,Navigate} from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
 
-const SideBar = () => {
+const SideBar = ({logout}) => {
   const {user} = useContext(AuthContext);
+  console.log(logout);
+  function logoutSuccess(){
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
 	<div className='sideBar'>
     <div className="sideBarWrapper">
@@ -56,14 +62,20 @@ const SideBar = () => {
           <Course className='sideBarIcon'/>
           <span className="sideBarListItemText">Courses</span>
         </li>
+        { !logout?
+          <li className="sideBarListItem">
+            <ExitToAppIcon className='sideBarIcon'/>
+            <span className="sideBarListItemText" onClick={logoutSuccess} style={{cursor:"pointer"}}>Log out</span>
+          </li>:null
+        }
       </ul>
       <button className='sideBarButton'>Show More</button>
       <hr className='sideBarHr' />
-      <ul className="sideBarFriendList">
+      {/* <ul className="sideBarFriendList">
         {Users.map((u)=>(
           <CloseFriend key={u.id} user={u} />
         ))}
-      </ul>
+      </ul> */}
     </div>
   </div>
   )

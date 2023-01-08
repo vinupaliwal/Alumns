@@ -14,7 +14,7 @@ function Message({own,message}) {
       <div className="messageTop">
         <img
           className="messageImg"
-          src={own?PF+user.profilePicture : PF+"person/noAvtar.png"}
+          src={own?PF+user.profilePicture :null}
           alt=""
         />
         <p className="messageText">{message.text}</p>

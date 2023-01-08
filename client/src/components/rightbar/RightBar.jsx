@@ -62,7 +62,7 @@ const RightBar = ({user}) => {
       <>
       <div className="birthdayContainer">
         <img src="/assets/gift.png" alt="" className="birthdayImg" />
-        <span className="birthdayText"><b>Anushka Dwivedi</b> and <b>Krishna Gopal</b> have a birthday  today</span>
+        <span className="birthdayText"><b>Viraj Sharma</b> and <b>Ajay Gupta</b> have a birthday  today</span>
       </div>
       <img src="/assets/ad.png" alt="" className="rightbarAd" />
       <h4 className="rightbarTitle">All Alumni</h4>

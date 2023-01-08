@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true},()=>{
 
 app.use("/images",express.static(path.join(__dirname,"public/images")));
 //middlewares
-app.use(express.json());
+app.use(express.json());  
 app.use(Cors());
 app.use(helmet());
 app.use(morgan("common"));
@@ -51,7 +51,7 @@ app.use("/api/users",usersRoutes);
 app.use("/api/auth",authRoutes);
 app.use("/api/posts",postsRoutes); 
 app.use("/api/conversations",conversationRoutes); 
-app.use("/api/messages",messagesRoutes); 
+app.use("/api/messages",messagesRoutes);  
 
 
 app.listen(8000,()=>{
